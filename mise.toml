@@ -1,0 +1,7 @@
+[tools]
+poetry = "latest"
+python = "latest"
+
+[tasks.setup]
+description = "Initial setup"
+run = "poetry install"

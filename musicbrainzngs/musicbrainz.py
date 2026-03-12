@@ -12,6 +12,7 @@ import hashlib
 import locale
 import sys
 import json
+from typing import List
 import xml.etree.ElementTree as etree
 from xml.parsers import expat
 from warnings import warn
@@ -19,6 +20,7 @@ from warnings import warn
 from musicbrainzngs import mbxml
 from musicbrainzngs import util
 from musicbrainzngs import compat
+from musicbrainzngs.types import Area, AreaIncludes, AreaaIncludes, ValidReleaseStatuses, ValidReleaseTypes
 
 _version = "0.7.1"
 _log = logging.getLogger("musicbrainzngs")
@@ -302,13 +304,14 @@ def _docstring_impl(name, values):
 
 # Global authentication and endpoint details.
 
-user = password = ""
-hostname = "musicbrainz.org"
-https = True
-_client = ""
-_useragent = ""
+user: str = ""
+password: str = ""
+hostname: str = "musicbrainz.org"
+https: bool = True
+_client: str = ""
+_useragent: str = ""
 
-def auth(u, p):
+def auth(u: str, p: str):
 	"""Set the username and password to be used in subsequent queries to
 	the MusicBrainz XML API that require authentication.
 	"""
@@ -351,7 +354,7 @@ limit_interval = 1.0
 limit_requests = 1
 do_rate_limit = True
 
-def set_rate_limit(limit_or_interval=1.0, new_requests=1):
+def set_rate_limit(limit_or_interval: float=1.0, new_requests: int=1):
     """Sets the rate limiting behavior of the module. Must be invoked
     before the first Web service call.
     If the `limit_or_interval` parameter is set to False then
@@ -808,8 +811,8 @@ def _do_mb_post(path, body):
 
 # Single entity by ID
 
-@_docstring_get("area")
-def get_area_by_id(id, includes=[], release_status=[], release_type=[]):
+# @_docstring_get("area")
+def get_area_by_id(id: str, includes: AreaIncludes = [], release_status: List[ValidReleaseStatuses] = [], release_type: List[ValidReleaseTypes] = []) -> Area:
     """Get the area with the MusicBrainz `id` as a dict with an 'area' key.
 
     *Available includes*: {includes}"""

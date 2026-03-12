@@ -1,3 +1,12 @@
+0.1.1 (2026-06-12):
+    * Types added: Introduced a set of type annotations / lightweight typed entities to improve static typing and IDE autocompletion across the library.
+    * API migration: get_area_by_id now returns the new typed area object instead of an untyped/raw dict, and its internals were migrated to use the shared types.
+    * Refactor: Parsing and return-path code was refactored to produce typed results; this is an internal cleanup to make future type-driven changes easier.
+    * Compatibility: No functional behavior changes expected for most callers; callers that relied on raw dicts should still work but can opt into the typed objects for clearer attribute access.
+    * Recommendation: Run your type checker (e.g., mypy) and update downstream code to use the new typed fields where helpful.
+
+Forked
+
 0.7.1 (2020-01-11):
     * include README file in pypi
 
