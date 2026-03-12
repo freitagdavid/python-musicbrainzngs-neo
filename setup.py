@@ -8,7 +8,7 @@ with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name="musicbrainzngs",
+    name="musicbrainzngs-neo",
     version=musicbrainz._version,
     description="Python bindings for the MusicBrainz NGS and"
     " the Cover Art Archive webservices",
